@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@passageidentity/passage-node": "^2.6.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2"
   }
 }
