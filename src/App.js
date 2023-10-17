@@ -1,6 +1,6 @@
 import NavBar from "./components/NavBar";
 import AboutPage from "./pages/AboutPage";
-import LoginPage from "./pages/LoginPage";
+import Login from "./pages/LoginPage";
 import {Routes, Route} from 'react-router-dom';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<AboutPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<Login />} />
         {/* <div className="App">
         <header className="App-header">
           <NavBar />
