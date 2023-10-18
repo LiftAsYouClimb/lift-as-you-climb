@@ -1,6 +1,6 @@
-const express = require("express");
-const app = express();
-const passageAuthMiddleware = require("./authMiddleware"); // Import the middleware
+import express from "express";
+import passageAuthMiddleware from "./authMiddleware.mjs";
+const app = express(); // Import the middleware
 
 // define the port
 const port = process.env.PORT || 4000;
