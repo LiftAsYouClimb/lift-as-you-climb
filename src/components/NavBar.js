@@ -1,10 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
+  const buttonStyle = {
+    color: "white", 
+  };
+
+  const location = useLocation();
+const isHomePage = location.pathname === "/" || location.pathname === "/login";
+
+// Function to determine if the current page is the profile page or lift page
+const isProfileOrLiftPage =
+  location.pathname === "/profile" || location.pathname === "/LiftPage";
+  
   return (
     <AppBar position="static" sx={{ background: "teal" }}>
       <Toolbar>
@@ -16,17 +27,29 @@ const Navbar = () => {
           />
         </Typography>
         <Box>
-          <Link to="/">
-            <Button color="inherit">ABOUT</Button>
-          </Link>
-          {/* <Button color="inherit">CLIMB</Button>
-          <Button color="inherit">LIFT</Button> */}
-          <Link to="/profile">
-            <Button color="inherit">PROFILE</Button>
-          </Link>
-          <Link to="/login">
-            <Button color="inherit">LOGIN</Button>
-          </Link>
+      
+            <Link to="/">
+              <Button style={buttonStyle}>ABOUT</Button>
+            </Link>
+   
+          {isProfileOrLiftPage && (
+            <>
+              <Link to="/ClimbPage">
+                <Button style={buttonStyle}>CLIMB</Button>
+              </Link>
+              <Link to="/LiftPage">
+                <Button style={buttonStyle}>LIFT</Button>
+              </Link>
+              <Link to="/profile">
+                <Button style={buttonStyle}>PROFILE</Button>
+              </Link>
+            </>
+          )}
+          {isHomePage && (
+            <Link to="/login">
+              <Button style={buttonStyle}>LOGIN</Button>
+            </Link>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
