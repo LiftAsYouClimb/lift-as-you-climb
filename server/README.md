@@ -10,6 +10,14 @@ To start both React and Node:
 
 - In separate terminals, navigate to React app's root directory (`lift-as-you-climb`) and Node.js server directory (`lift-as-you-climb/server`)
 - In the React app directory, start the development server: `npm start`
-- In the Node.js server directory, start the server: `node server.js`
+- In the Node.js server directory, start the server: `node server.mjs`
 
 The React development server typically runs on port 3000, and our Node.js server runs on port 4000, as configured in the code.
+
+If you try to start the server and get this error:
+
+`PassageError: A Passage appID is required. Please include {appID: YOUR_APP_ID}.`
+
+You most likely need to set the environment variable in the command line:
+
+`export PASSAGE_APP_ID=YOUR_APP_ID`
