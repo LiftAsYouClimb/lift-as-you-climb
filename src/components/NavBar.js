@@ -1,14 +1,8 @@
 import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
-import logo from "../assets/logo.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   return (
@@ -26,8 +20,10 @@ const Navbar = () => {
             <Button color="inherit">ABOUT</Button>
           </Link>
           {/* <Button color="inherit">CLIMB</Button>
-          <Button color="inherit">LIFT</Button>
-          <Button color="inherit">PROFILE</Button> */}
+          <Button color="inherit">LIFT</Button> */}
+          <Link to="/profile">
+            <Button color="inherit">PROFILE</Button>
+          </Link>
           <Link to="/login">
             <Button color="inherit">LOGIN</Button>
           </Link>
