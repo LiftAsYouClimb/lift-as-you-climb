@@ -5,6 +5,7 @@ const passageConfig = {
 };
 
 let passage = new psg(passageConfig);
+
 let passageAuthMiddleware = async (req, res, next) => {
   try {
     let userID = await passage.authenticateRequest(req);

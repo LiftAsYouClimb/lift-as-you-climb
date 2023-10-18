@@ -1,9 +1,13 @@
 import express from "express";
 import passageAuthMiddleware from "./authMiddleware.mjs";
-const app = express(); // Import the middleware
+import dotenv from "dotenv";
 
+dotenv.config();
+
+const app = express();
 // define the port
 const port = process.env.PORT || 4000;
+const db = require("./data/database"); // we can use the db object for database operations
 // set up a route for HTTP GET requests to the root URL ("/")
 app.get("/", (req, res) => {
   res.send("Hello from the Node.js server!");

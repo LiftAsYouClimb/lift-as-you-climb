@@ -1,7 +1,7 @@
 const sqlite3 = require("sqlite3").verbose();
+const dbFilePath = process.env.DB_FILE_PATH || "database.sqlite";
 
-// Provide the path to SQLite database file
-const db = new sqlite3.Database("database.sqlite", (err) => {
+const db = new sqlite3.Database(dbFilePath, (err) => {
   if (err) {
     console.error("Error opening database:", err.message);
   } else {
