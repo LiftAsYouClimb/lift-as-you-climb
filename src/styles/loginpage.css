@@ -25,7 +25,7 @@ passage-auth {
   --passage-header-font-family:'ChequeBold';
   --passage-header-text-color: white;
   --passage-container-background-color: #99E1DD;
-  --passage-body-font-family:font-family: 'Roboto', sans-serif;
+  --passage-body-font-family:'Roboto', sans-serif;
 }
 
 passage-auth::part(button) {
