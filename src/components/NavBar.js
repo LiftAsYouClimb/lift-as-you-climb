@@ -13,8 +13,8 @@ const Navbar = () => {
 const isHomePage = location.pathname === "/" || location.pathname === "/login";
 
 // Function to determine if the current page is the profile page or lift page
-const isProfileOrLiftPage =
-  location.pathname === "/profile" || location.pathname === "/LiftPage";
+const isProfileOrLiftPageOrClimbPage =
+  location.pathname === "/profile" || location.pathname === "/LiftPage" || location.pathname === "/ClimbPage";
   
   return (
     <AppBar position="static" sx={{ background: "teal" }}>
@@ -32,7 +32,7 @@ const isProfileOrLiftPage =
               <Button style={buttonStyle}>ABOUT</Button>
             </Link>
    
-          {isProfileOrLiftPage && (
+          {isProfileOrLiftPageOrClimbPage && (
             <>
               <Link to="/ClimbPage">
                 <Button style={buttonStyle}>CLIMB</Button>
