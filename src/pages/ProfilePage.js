@@ -29,7 +29,6 @@ const ProfilePage = () => {
       style={{
         height: 'calc(100vh - 200px)',
         marginTop: '24px',
-        border: 'solid purple 1px',
         display: 'flex',
         flexDirection: 'column'
       }}
@@ -42,7 +41,7 @@ const ProfilePage = () => {
           </Box>
         </Grid>
 
-        <Grid xs={8} style={{ border: 'solid purple 1px' }}>
+        <Grid xs={8}>
           <Box
             p={3}
             style={{
@@ -61,12 +60,11 @@ const ProfilePage = () => {
             <ProfileInfo />
           </Grid>
 
-          <Grid xs={12} md={8} lg={8} style={{ border: 'solid red 1px' }}>
+          <Grid xs={12} md={8} lg={8}>
             <Paper
               elevation={3}
               style={{
                 backgroundColor: theme.palette.customColorLightCyan.main,
-                border: 'solid black 1px',
                 height: '100%'
               }}
 
@@ -103,7 +101,7 @@ const ProfilePage = () => {
         <Grid item xs={6} md={6} lg={6} style={{height: '100%'}}>
           <SupportReceived/>
         </Grid>
-        <Grid item xs={6} md={6} lg={6} style={{ border: 'solid pink 1px' }}></Grid>
+        <Grid item xs={6} md={6} lg={6}></Grid>
       </Grid>
     </Container>
   );
