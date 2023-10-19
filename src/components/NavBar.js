@@ -9,15 +9,15 @@ const Navbar = () => {
     color: "white",
     fontFamily: "'Bebas Neue', sans-serif",
     fontSize: "24px",
-    margin: "0 50px",
+    marginBottom: 0,
   };
 
-  const location = useLocation();
+const location = useLocation();
 const isHomePage = location.pathname === "/" || location.pathname === "/login";
 
 
 const isProfileOrLiftPageOrClimbPage =
-  location.pathname === "/profile" || location.pathname === "/LiftPage" || location.pathname === "/ClimbPage";
+  location.pathname === "/profile" || location.pathname === "/lift" || location.pathname === "/climb";
   
   return (
     <AppBar position="static" sx={{ background: "teal" }}>
@@ -37,16 +37,16 @@ const isProfileOrLiftPageOrClimbPage =
           </Link>
           {isProfileOrLiftPageOrClimbPage && (
             <>
-              <Link to="/ClimbPage">
+              <Link to="/climb">
                 <Button style={{ ...buttonStyle }}>
-                  {location.pathname.includes("/ClimbPage")
+                  {location.pathname.includes("/climb")
                     ? "< CLIMB />"
                     : "CLIMB"}
                 </Button>
               </Link>
-              <Link to="/LiftPage">
+              <Link to="/lift">
                 <Button style={{ ...buttonStyle }}>
-                  {location.pathname.includes("/LiftPage")
+                  {location.pathname.includes("/lift")
                     ? "< LIFT />"
                     : "LIFT"}
                 </Button>

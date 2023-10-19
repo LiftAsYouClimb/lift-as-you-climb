@@ -1,4 +1,11 @@
+import React from "react";
+import CommunityBoard from "../components/CommunityBoard"
 const LiftPage = () => {
-  return <div>Lift Page</div>;
+  
+  return (
+    <div >
+      <CommunityBoard />
+    </div>
+  );
 };
 export default LiftPage;
