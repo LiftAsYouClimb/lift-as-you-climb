@@ -18,7 +18,8 @@ db.serialize(() => {
       userName TEXT,
       bio TEXT,
       professionalBackground TEXT,
-      location TEXT
+      location TEXT,
+      passageUserID TEXT
     )
   `);
 

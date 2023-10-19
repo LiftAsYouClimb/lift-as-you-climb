@@ -1,9 +1,48 @@
 import { run, db } from "./database.mjs";
 
-// Function to get user profiles
-async function getUserProfiles() {
+async function addUserProfileWithPassageUserID(
+  passageUserID,
+  userName,
+  bio,
+  professionalBackground,
+  location
+) {
+  const query = `
+    INSERT INTO UserProfiles (passageUserID, userName, bio, professionalBackground, location)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  const params = [
+    passageUserID,
+    userName,
+    bio,
+    professionalBackground,
+    location,
+  ];
+
+  return new Promise((resolve, reject) => {
+    db.run(query, params, function (err) {
+      if (err) {
+        console.error(
+          "Error inserting user profile with Passage UserID:",
+          err.message
+        );
+        reject(err);
+      } else {
+        console.log("User profile with Passage UserID inserted successfully");
+        // Resolve with the last inserted ID
+        resolve(this.lastID);
+      }
+    });
+  });
+}
+
+async function getUserProfilesByPassageUserID(passageUserID) {
   try {
-    const userProfiles = await db.all("SELECT * FROM UserProfiles");
+    const userProfiles = db.all(
+      "SELECT * FROM UserProfiles WHERE passageUserID = ?",
+      [passageUserID]
+    );
     return userProfiles;
   } catch (error) {
     throw error;
@@ -14,22 +53,22 @@ async function updateUserProfile(
   userName,
   bio,
   professionalBackground,
-  location
+  location,
+  passageUserID
 ) {
-  console.log("updateUserProfile function called");
-  console.log(
-    "Data to be inserted:",
+  const query = `
+  UPDATE UserProfiles 
+  SET userName = ?, bio = ?, professionalBackground = ?, location = ?
+  WHERE passageUserID = ?
+`;
+
+  const params = [
     userName,
     bio,
     professionalBackground,
-    location
-  );
-  const query = `
-    INSERT INTO UserProfiles (userName, bio, professionalBackground, location)
-    VALUES (?, ?, ?, ?)
-  `;
-
-  const params = [userName, bio, professionalBackground, location];
+    location,
+    passageUserID,
+  ];
 
   return new Promise((resolve, reject) => {
     db.run(query, params, function (err) {
@@ -45,7 +84,6 @@ async function updateUserProfile(
   });
 }
 
-// Function to create a new request
 function createRequest(userId, title, description, emojiResponses) {
   return new Promise((resolve, reject) => {
     run(
@@ -64,7 +102,6 @@ function createRequest(userId, title, description, emojiResponses) {
   });
 }
 
-// Function to create a new response
 function createResponse(
   requestId,
   userId,
@@ -90,9 +127,9 @@ function createResponse(
   });
 }
 
-// Export the functions
 const dataAccessLayer = {
-  getUserProfiles,
+  addUserProfileWithPassageUserID,
+  getUserProfilesByPassageUserID,
   updateUserProfile,
   createRequest,
   createResponse,
