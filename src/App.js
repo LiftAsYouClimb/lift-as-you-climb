@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import AboutPage from "./pages/AboutPage";
 import Login from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import LiftPage from "./pages/LiftPage";
+import OfferSupportPage from "./pages/OfferSupportPage";
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<AboutPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/lift" element={<LiftPage />} />
+        <Route path="/offer-support" element={<OfferSupportPage />} />
         {/* <div className="App">
         <header className="App-header">
           <NavBar />

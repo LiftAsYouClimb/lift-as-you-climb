@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 
-import IconButton from "@mui/material/IconButton";
 import TextField from "@mui/material/TextField";
 
 const FormInput = ({ setText, text }) => {
   const [isEditing, setEditing] = useState(false);
-
-  const handleSave = () => {
-    // Handle saving the text to the backend here
-    setEditing(false);
-  };
 
   const containerStyle = {
     display: "flex",
@@ -42,9 +36,6 @@ const FormInput = ({ setText, text }) => {
           />
           <div style={{display: "flex"}}>
             <p>{1000 - text.length} characters remaining</p>
-            <IconButton color="primary" onClick={handleSave}>
-              SAVE
-            </IconButton>
           </div>
         </div>
       ) : (
