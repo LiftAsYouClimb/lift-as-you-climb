@@ -1,0 +1,33 @@
+.login {
+  border: solid red 2px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  height: 75%;
+  width: auto;
+}
+
+.passage {
+  height: fit-content;
+  width: 30%;
+  margin: auto 0;
+}
+
+passage-auth {
+  --passage-container-margin: 0;
+  --passage-container-max-width:100%;
+  --passage-header-font-family:'ChequeBold';
+  --passage-header-text-color: white;
+  --passage-container-background-color: #99E1DD;
+}
+
+passage-auth::part(button) {
+  font-family: 'ChequeBold';
+  color: white;
+  background-color: #0f283c;
+}
