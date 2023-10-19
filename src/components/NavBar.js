@@ -9,12 +9,13 @@ const Navbar = () => {
     color: "white",
     fontFamily: "'Bebas Neue', sans-serif",
     fontSize: "24px",
+    margin: "0 50px",
   };
 
   const location = useLocation();
 const isHomePage = location.pathname === "/" || location.pathname === "/login";
 
-// Function to determine if the current page is the profile page or lift page
+
 const isProfileOrLiftPageOrClimbPage =
   location.pathname === "/profile" || location.pathname === "/LiftPage" || location.pathname === "/ClimbPage";
   
@@ -25,7 +26,7 @@ const isProfileOrLiftPageOrClimbPage =
           <img
             src={logo}
             alt="App Logo"
-            style={{ height: 100, marginRight: 10 }}
+            style={{ height: 110, marginRight: 10 }}
           />
         </Typography>
         <Box>
