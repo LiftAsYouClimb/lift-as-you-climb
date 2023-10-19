@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import { Typography, Card, CardContent } from '@mui/material';
 import { SupportCard } from './SupportCard';
 
-export const SupportReceived = () => {
+export const Support = ({title}) => {
   return (
     <Box
       display='flex'
@@ -28,7 +28,7 @@ export const SupportReceived = () => {
           borderRadius: '5px'
         }}
       >
-        Support You've Received
+      {title}
       </Typography>
       <Grid
         container
@@ -53,25 +53,7 @@ export const SupportReceived = () => {
           lg={11}
           style={{ marginRight: 'auto', marginLeft: 'auto' }}
         >
-          <Card style={{ backgroundColor: '#D3E1E1', borderRadius: '5px' }}>
-            <CardContent
-              style={{ paddingBottom: '0' }}
-            >
-              <Typography
-                variant='h5'
-                align='center'
-                style={{ fontFamily: "'Roboto', sans-serif" }}
-              >
-                Comment Received
-              </Typography>
-              <p
-                align='right'
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
-                Username
-              </p>
-            </CardContent>
-          </Card>
+          <SupportCard />
         </Grid>
       </Grid>
     </Box>

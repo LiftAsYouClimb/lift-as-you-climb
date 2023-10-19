@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SupportReceived } from '../components/SupportReceived';
+import { Support } from '../components/Support';
 
 import { Container, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
@@ -30,11 +30,11 @@ const ProfilePage = () => {
         height: 'calc(100vh - 200px)',
         marginTop: '24px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
       }}
       spacing={2}
     >
-      <Grid container spacing={2} style={{marginBottom: '10px'}}>
+      <Grid container spacing={2} style={{ marginBottom: '10px' }}>
         <Grid xs={4}>
           <Box p={3}>
             <ProfileIconCustom src={ProfileImage} alt='Profile Icon' />
@@ -65,9 +65,8 @@ const ProfilePage = () => {
               elevation={3}
               style={{
                 backgroundColor: theme.palette.customColorLightCyan.main,
-                height: '100%'
+                height: '100%',
               }}
-
             >
               <Box p={3}>
                 <Typography
@@ -97,11 +96,13 @@ const ProfilePage = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container style={{ flex: 1}}>
-        <Grid item xs={6} md={6} lg={6} style={{height: '100%'}}>
-          <SupportReceived/>
+      <Grid container spacing={2} style={{ flex: 1 }}>
+        <Grid item xs={6} md={6} lg={6} style={{ height: '100%' }}>
+          <Support title="Support You've Received" />
         </Grid>
-        <Grid item xs={6} md={6} lg={6}></Grid>
+        <Grid item xs={6} md={6} lg={6}>
+          <Support title="Support You've Shared" />
+        </Grid>
       </Grid>
     </Container>
   );
