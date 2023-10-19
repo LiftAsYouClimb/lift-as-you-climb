@@ -2,7 +2,7 @@ import sqlite3 from "sqlite3";
 
 const dbFilePath = process.env.DB_FILE_PATH || "database.sqlite";
 
-const db = new sqlite3.Database(dbFilePath, (err) => {
+const db = new sqlite3.Database(dbFilePath, sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
     console.error("Error opening database:", err.message);
   } else {
@@ -29,7 +29,6 @@ db.serialize(() => {
       user_id INTEGER,
       title TEXT NOT NULL,
       description TEXT NOT NULL,
-      emojiResponses TEXT, -- You can store emoji responses as a string or in a separate table
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES UserProfiles (id)
     )

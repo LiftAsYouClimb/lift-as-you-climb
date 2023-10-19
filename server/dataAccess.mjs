@@ -1,9 +1,9 @@
-import { run, db } from "./data/database.mjs";
+import { run, db } from "./database.mjs";
 
 // Function to get user profiles
 async function getUserProfiles() {
   try {
-    const userProfiles = db.all("SELECT * FROM UserProfiles");
+    const userProfiles = await db.all("SELECT * FROM UserProfiles");
     return userProfiles;
   } catch (error) {
     throw error;
@@ -16,16 +16,33 @@ async function updateUserProfile(
   professionalBackground,
   location
 ) {
-  try {
-    const result = db.run(
-      "INSERT INTO Users (userName, bio, professionalBackground, location) VALUES (?, ?, ?, ?)",
-      [userName, bio, professionalBackground, location]
-    );
+  console.log("updateUserProfile function called");
+  console.log(
+    "Data to be inserted:",
+    userName,
+    bio,
+    professionalBackground,
+    location
+  );
+  const query = `
+    INSERT INTO UserProfiles (userName, bio, professionalBackground, location)
+    VALUES (?, ?, ?, ?)
+  `;
 
-    return result.lastID;
-  } catch (error) {
-    throw error;
-  }
+  const params = [userName, bio, professionalBackground, location];
+
+  return new Promise((resolve, reject) => {
+    db.run(query, params, function (err) {
+      if (err) {
+        console.error("Error inserting user profile:", err.message);
+        reject(err);
+      } else {
+        console.log("User profile inserted successfully");
+        // Resolve with the last inserted ID
+        resolve(this.lastID);
+      }
+    });
+  });
 }
 
 // Function to create a new request

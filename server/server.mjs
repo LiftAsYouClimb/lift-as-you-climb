@@ -2,13 +2,14 @@ import express from "express";
 import dataAccessLayer from "./dataAccess.mjs";
 import passageAuthMiddleware from "./authMiddleware.mjs";
 import dotenv from "dotenv";
-import { db } from "./data/database.mjs";
+import { db } from "./database.mjs";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
 
+app.use(express.json());
 // set up a route for HTTP GET requests to the root URL ("/")
 app.get("/", (req, res) => {
   res.send("Hello from the Node.js server!");
@@ -37,30 +38,30 @@ app.get("/user-profiles", (req, res) => {
     });
 });
 
-// Define your API endpoints using Express.js routes
-app.use(express.json()); // Enable JSON parsing middleware
-
-app.post("/user-profiles", (req, res) => {
+app.post("/user-profiles", async (req, res) => {
   const { userName, bio, professionalBackground, location } = req.body;
+  console.log("POST /user-profiles route called");
 
-  const query = `
-    INSERT INTO UserProfiles (userName, bio, professionalBackground, location)
-    VALUES (?, ?, ?, ?)
-  `;
+  try {
+    const userId = await dataAccessLayer.updateUserProfile(
+      userName,
+      bio,
+      professionalBackground,
+      location
+    );
 
-  db.run(
-    query,
-    [userName, bio, professionalBackground, location],
-    function (err) {
-      if (err) {
-        console.error("Error creating user profile:", err.message);
-        res.status(500).json({ error: "Failed to create user profile" });
-      } else {
-        console.log("User profile created with ID:", this.lastID);
-        res.status(201).json({ message: "User profile created" });
-      }
-    }
-  );
+    // Fetch the updated list of profiles AFTER the profile is created
+    const userProfiles = await dataAccessLayer.getUserProfiles();
+    console.log("User profile created successfully");
+
+    res.status(201).json({
+      message: "User profile created",
+      userProfiles,
+    });
+  } catch (error) {
+    console.error("Error creating user profile:", error);
+    res.status(500).json({ error: "Failed to create user profile" });
+  }
 });
 
 app.listen(port, () => {
