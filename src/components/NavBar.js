@@ -6,7 +6,9 @@ import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const buttonStyle = {
-    color: "white", 
+    color: "white",
+    fontFamily: "'Bebas Neue', sans-serif",
+    fontSize: "24px",
   };
 
   const location = useLocation();
@@ -27,29 +29,43 @@ const isProfileOrLiftPageOrClimbPage =
           />
         </Typography>
         <Box>
-      
-            <Link to="/">
-              <Button style={buttonStyle}>ABOUT</Button>
-            </Link>
-   
+          <Link to="/">
+            <Button style={{ ...buttonStyle }}>
+              {location.pathname === "/" ? "< ABOUT />" : "ABOUT"}
+            </Button>
+          </Link>
           {isProfileOrLiftPageOrClimbPage && (
             <>
               <Link to="/ClimbPage">
-                <Button style={buttonStyle}>CLIMB</Button>
+                <Button style={{ ...buttonStyle }}>
+                  {location.pathname.includes("/ClimbPage")
+                    ? "< CLIMB />"
+                    : "CLIMB"}
+                </Button>
               </Link>
               <Link to="/LiftPage">
-                <Button style={buttonStyle}>LIFT</Button>
+                <Button style={{ ...buttonStyle }}>
+                  {location.pathname.includes("/LiftPage")
+                    ? "< LIFT />"
+                    : "LIFT"}
+                </Button>
               </Link>
               <Link to="/profile">
-                <Button style={buttonStyle}>PROFILE</Button>
+                <Button style={{ ...buttonStyle }}>
+                  {location.pathname.includes("/profile")
+                    ? "< PROFILE />"
+                    : "PROFILE"}
+                </Button>
               </Link>
             </>
           )}
-          {isHomePage && (
+          {location.pathname === "/" || location.pathname === "/login" ? (
             <Link to="/login">
-              <Button style={buttonStyle}>LOGIN</Button>
+              <Button style={{ ...buttonStyle }}>
+                {location.pathname === "/login" ? "< LOGIN />" : "LOGIN"}
+              </Button>
             </Link>
-          )}
+          ) : null}
         </Box>
       </Toolbar>
     </AppBar>
