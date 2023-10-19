@@ -10,7 +10,6 @@ function Login() {
       <div className='passage'>
         <passage-auth
           app-id='e0EYlcepCkHve0EiiXrntHDA'
-          styles={{ border: 'solid red 1px' }}
         ></passage-auth>
       </div>
     </div>
