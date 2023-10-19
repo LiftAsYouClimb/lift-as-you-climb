@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "ChequeRegular";
+  src: local("ChequeRegular"),
+   url("./fonts/Cheque-Regular.otf") format("truetype");
+  font-weight: bold;
+ }
+
+ @font-face {
+  font-family: "ChequeBold";
+  src: local("ChequeBold"),
+   url("./fonts/Cheque-Bold.otf") format("truetype");
+  font-weight: bold;
+ }
