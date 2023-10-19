@@ -13,12 +13,14 @@ let passageAuthMiddleware = async (req, res, next) => {
       // user authenticated
       res.userID = userID;
       next();
+    } else {
+      // failed to authenticate, return a 401 or other "unauthorized" behavior
+      res.status(401).send("Could not authenticate user!");
     }
   } catch (e) {
-    // failed to authenticate
-    // we recommend returning a 401 or other "unauthorized" behavior
-    console.log(e);
-    res.status(401).send("Could not authenticate user!");
+    // Error during authentication
+    console.error(e);
+    res.status(500).send("An error occurred during authentication.");
   }
 };
 

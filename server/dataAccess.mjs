@@ -1,9 +1,20 @@
 import { run, db } from "./database.mjs";
 
-// Function to get user profiles
 async function getUserProfiles() {
   try {
-    const userProfiles = await db.all("SELECT * FROM UserProfiles");
+    const profiles = db.all("SELECT * FROM UserProfiles");
+    return profiles;
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getUserProfilesByPassageUserID(passageUserID) {
+  try {
+    const userProfiles = db.all(
+      "SELECT * FROM UserProfiles WHERE passageUserID = ?",
+      [passageUserID]
+    );
     return userProfiles;
   } catch (error) {
     throw error;
@@ -14,22 +25,21 @@ async function updateUserProfile(
   userName,
   bio,
   professionalBackground,
-  location
+  location,
+  passageUserID
 ) {
-  console.log("updateUserProfile function called");
-  console.log(
-    "Data to be inserted:",
+  const query = `
+    INSERT INTO UserProfiles (userName, bio, professionalBackground, location, passageUserID)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  const params = [
     userName,
     bio,
     professionalBackground,
-    location
-  );
-  const query = `
-    INSERT INTO UserProfiles (userName, bio, professionalBackground, location)
-    VALUES (?, ?, ?, ?)
-  `;
-
-  const params = [userName, bio, professionalBackground, location];
+    location,
+    passageUserID,
+  ];
 
   return new Promise((resolve, reject) => {
     db.run(query, params, function (err) {
@@ -45,7 +55,6 @@ async function updateUserProfile(
   });
 }
 
-// Function to create a new request
 function createRequest(userId, title, description, emojiResponses) {
   return new Promise((resolve, reject) => {
     run(
@@ -64,7 +73,6 @@ function createRequest(userId, title, description, emojiResponses) {
   });
 }
 
-// Function to create a new response
 function createResponse(
   requestId,
   userId,
@@ -90,9 +98,9 @@ function createResponse(
   });
 }
 
-// Export the functions
 const dataAccessLayer = {
   getUserProfiles,
+  getUserProfilesByPassageUserID,
   updateUserProfile,
   createRequest,
   createResponse,

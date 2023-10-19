@@ -2,7 +2,6 @@ import express from "express";
 import dataAccessLayer from "./dataAccess.mjs";
 import passageAuthMiddleware from "./authMiddleware.mjs";
 import dotenv from "dotenv";
-import { db } from "./database.mjs";
 
 dotenv.config();
 
@@ -15,43 +14,48 @@ app.get("/", (req, res) => {
   res.send("Hello from the Node.js server!");
 });
 
-app.get("/authenticatedRoute", passageAuthMiddleware, async (req, res) => {
-  // Access the userID variable from the res object
-  let userID = res.userID;
-
-  // Now, we can use the userID in our route logic
-  // For example, we might use it to fetch user-specific data or perform actions on behalf of the authenticated user
-});
-
 // Define a GET route to retrieve user profiles
-app.get("/user-profiles", (req, res) => {
-  dataAccessLayer
-    .getUserProfiles()
-    .then((userProfiles) => {
-      // Send the user profiles as a JSON response
-      res.json(userProfiles);
-    })
-    .catch((error) => {
-      // Handle any errors (e.g., database errors)
-      console.error("Error fetching user profiles:", error);
-      res.status(500).json({ error: "Failed to fetch user profiles" });
-    });
+app.get("/user-profiles", passageAuthMiddleware, async (req, res) => {
+  // Access the Passage user ID from the request, provided by the Passage middleware
+  const passageUserID = req.userID;
+
+  if (!passageUserID) {
+    return res
+      .status(401)
+      .json({ error: "User is not authenticated through Passage" });
+  }
+
+  try {
+    // Fetch the user profile associated with the Passage user ID
+    const userProfiles = await dataAccessLayer.getUserProfilesByPassageUserID(
+      passageUserID
+    );
+    // Send the user profiles as a JSON response
+    res.json(userProfiles);
+  } catch (error) {
+    // Handle any errors (e.g., database errors)
+    console.error("Error fetching user profiles:", error);
+    res.status(500).json({ error: "Failed to fetch user profiles" });
+  }
 });
 
-app.post("/user-profiles", async (req, res) => {
+app.post("/user-profiles", passageAuthMiddleware, async (req, res) => {
   const { userName, bio, professionalBackground, location } = req.body;
   console.log("POST /user-profiles route called");
 
   try {
-    const userId = await dataAccessLayer.updateUserProfile(
+    await dataAccessLayer.updateUserProfile(
       userName,
       bio,
       professionalBackground,
-      location
+      location,
+      req.userID // Assuming you have the user ID available in the request
     );
 
-    // Fetch the updated list of profiles AFTER the profile is created
-    const userProfiles = await dataAccessLayer.getUserProfiles();
+    // Fetch the user profiles associated with the Passage user ID
+    const userProfiles = await dataAccessLayer.getUserProfilesByPassageUserID(
+      req.userID
+    );
     console.log("User profile created successfully");
 
     res.status(201).json({
