@@ -6,10 +6,11 @@ import ProfilePage from "./pages/ProfilePage";
 import LiftPage from "./pages/LiftPage";
 import ClimbPage from "./pages/ClimbPage";
 
+import "./styles/app.css";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <NavBar />
       <Routes>
         <Route path="/" element={<AboutPage />} />
