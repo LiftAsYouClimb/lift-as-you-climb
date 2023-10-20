@@ -56,11 +56,26 @@ async function updateUserProfile(
   location,
   passageUserID
 ) {
+  // Check if a profile already exists for the given passageUserID
+  const existingProfile = await getUserProfilesByPassageUserID(passageUserID);
+
+  if (!existingProfile) {
+    // If no profile exists, you may want to create one instead
+    return addUserProfileWithPassageUserID(
+      passageUserID,
+      userName,
+      bio,
+      professionalBackground,
+      location
+    );
+  }
+
+  // If a profile exists, update it
   const query = `
-  UPDATE UserProfiles 
-  SET userName = ?, bio = ?, professionalBackground = ?, location = ?
-  WHERE passageUserID = ?
-`;
+    UPDATE UserProfiles 
+    SET userName = ?, bio = ?, professionalBackground = ?, location = ?
+    WHERE passageUserID = ?
+  `;
 
   const params = [
     userName,
@@ -73,10 +88,10 @@ async function updateUserProfile(
   return new Promise((resolve, reject) => {
     db.run(query, params, function (err) {
       if (err) {
-        console.error("Error inserting user profile:", err.message);
+        console.error("Error updating user profile:", err.message);
         reject(err);
       } else {
-        console.log("User profile inserted successfully");
+        console.log("User profile updated successfully");
         // Resolve with the last inserted ID
         resolve(this.lastID);
       }
