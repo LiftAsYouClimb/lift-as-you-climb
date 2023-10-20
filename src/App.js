@@ -6,6 +6,7 @@ import Login from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import ClimbPage from "./pages/ClimbPage/index";
 import LiftPage from "./pages/LiftPage";
+import OfferSupportPage from "./pages/OfferSupportPage";
 
 import "./styles/app.css";
 
@@ -19,6 +20,8 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/ClimbPage" element={<ClimbPage />} />
         <Route path="/lift" element={<LiftPage />} />
+        <Route path="/offer-support" element={<OfferSupportPage />} />
+
       </Routes>
     </div>
   );
