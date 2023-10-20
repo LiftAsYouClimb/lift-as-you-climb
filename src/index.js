@@ -7,6 +7,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 
 import theme from "./theme";
 import "./index.css";
+import './fonts/Cheque-Regular.otf'
+import './fonts/Cheque-Bold.otf'
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
