@@ -1,23 +1,21 @@
-import psg from "@passageidentity/passage-node";
-
-const passageConfig = {
-  appID: process.env.PASSAGE_APP_ID,
-};
-
-let passage = new psg(passageConfig);
-let passageAuthMiddleware = async (req, res, next) => {
+const passageAuthMiddleware = async (req, res, next) => {
   try {
+    // Access the Passage instance from the request
+    const passage = req.passage;
+
     let userID = await passage.authenticateRequest(req);
     if (userID) {
       // user authenticated
-      res.userID = userID;
+      req.userID = userID;
       next();
+    } else {
+      // failed to authenticate, return a 401 or other "unauthorized" behavior
+      res.status(401).send("Could not authenticate user!");
     }
   } catch (e) {
-    // failed to authenticate
-    // we recommend returning a 401 or other "unauthorized" behavior
-    console.log(e);
-    res.status(401).send("Could not authenticate user!");
+    // Error during authentication
+    console.error("Passage authentication error:", e);
+    res.status(500).send("An error occurred during authentication.");
   }
 };
 
