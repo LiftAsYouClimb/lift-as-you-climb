@@ -11,18 +11,6 @@ const db = new sqlite3.Database(dbFilePath, sqlite3.OPEN_READWRITE, (err) => {
 });
 
 db.serialize(() => {
-  // Create the UserProfiles table
-  db.run(`
-    CREATE TABLE IF NOT EXISTS UserProfiles (
-      id INTEGER PRIMARY KEY,
-      userName TEXT,
-      bio TEXT,
-      professionalBackground TEXT,
-      location TEXT,
-      passageUserID TEXT
-    )
-  `);
-
   // Create the Encouragement Requests table
   db.run(`
     CREATE TABLE IF NOT EXISTS Requests (

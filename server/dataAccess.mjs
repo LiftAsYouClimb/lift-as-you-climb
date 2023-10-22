@@ -1,105 +1,6 @@
-import { run, db } from "./database.mjs";
+import { run } from "./database.mjs";
 
-async function addUserProfileWithPassageUserID(
-  passageUserID,
-  userName,
-  bio,
-  professionalBackground,
-  location
-) {
-  const query = `
-    INSERT INTO UserProfiles (passageUserID, userName, bio, professionalBackground, location)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-
-  const params = [
-    passageUserID,
-    userName,
-    bio,
-    professionalBackground,
-    location,
-  ];
-
-  return new Promise((resolve, reject) => {
-    db.run(query, params, function (err) {
-      if (err) {
-        console.error(
-          "Error inserting user profile with Passage UserID:",
-          err.message
-        );
-        reject(err);
-      } else {
-        console.log("User profile with Passage UserID inserted successfully");
-        // Resolve with the last inserted ID
-        resolve(this.lastID);
-      }
-    });
-  });
-}
-
-async function getUserProfilesByPassageUserID(passageUserID) {
-  try {
-    const userProfiles = db.all(
-      "SELECT * FROM UserProfiles WHERE passageUserID = ?",
-      [passageUserID]
-    );
-    return userProfiles;
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function updateUserProfile(
-  userName,
-  bio,
-  professionalBackground,
-  location,
-  passageUserID
-) {
-  // Check if a profile already exists for the given passageUserID
-  const existingProfile = await getUserProfilesByPassageUserID(passageUserID);
-
-  if (!existingProfile) {
-    // If no profile exists, you may want to create one instead
-    return addUserProfileWithPassageUserID(
-      passageUserID,
-      userName,
-      bio,
-      professionalBackground,
-      location
-    );
-  }
-
-  // If a profile exists, update it
-  const query = `
-    UPDATE UserProfiles 
-    SET userName = ?, bio = ?, professionalBackground = ?, location = ?
-    WHERE passageUserID = ?
-  `;
-
-  const params = [
-    userName,
-    bio,
-    professionalBackground,
-    location,
-    passageUserID,
-  ];
-
-  return new Promise((resolve, reject) => {
-    db.run(query, params, function (err) {
-      if (err) {
-        console.error("Error updating user profile:", err.message);
-        reject(err);
-      } else {
-        console.log("User profile updated successfully");
-        // Resolve with the last inserted ID
-        resolve(this.lastID);
-      }
-    });
-  });
-}
-
-function createRequest(userId, title, description, emojiResponses) {
+async function createRequest(userId, title, description, emojiResponses) {
   return new Promise((resolve, reject) => {
     run(
       "INSERT INTO Requests (user_id, title, description, emojiResponses) VALUES (?, ?, ?, ?)",
@@ -117,7 +18,7 @@ function createRequest(userId, title, description, emojiResponses) {
   });
 }
 
-function createResponse(
+async function createResponse(
   requestId,
   userId,
   type,
@@ -143,9 +44,6 @@ function createResponse(
 }
 
 const dataAccessLayer = {
-  addUserProfileWithPassageUserID,
-  getUserProfilesByPassageUserID,
-  updateUserProfile,
   createRequest,
   createResponse,
 };
