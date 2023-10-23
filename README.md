@@ -64,11 +64,7 @@ cd lift-as-you-climb
 
 ### Server Setup
 
-1. Navigate to the server directory:
-
-```bash
-cd server
-```
+1. Navigate to the server directory: `cd server`
 
 2. Install server dependencies:
 
@@ -80,19 +76,11 @@ yarn install
 
 3. Set up your environment variables by creating a `.env` file and populating it with your own values. Make sure to include the required Passage by 1Password credentials.
 
-4. Run the server:
-
-```bash
-node server.mjs
-```
+4. Run the server: `node server.mjs`
 
 ### Client Setup
 
-1. Navigate to the client directory:
-
-```bash
-cd src
-```
+1. Navigate to the client directory: `cd src`
 
 2. Install client dependencies:
 
@@ -127,14 +115,20 @@ yarn start
 
 ### Client Routes
 
-- **`/`**: Home page displaying the community feed.
+- **`/`**: Home page with information about the app.
 - **`/profile`**: User profile page for editing your profile details.
-- **`/requests`**: Explore and post encouragement requests.
-- **`/responses`**: View and respond to encouragement requests.
+- **`/climb`**: Explore and post encouragement requests.
+- **`/lift`**: View and respond to encouragement requests.
 
 ## Authentication
 
 Lift As You Climb utilizes **Passage by 1Password** for authentication. To set up Passage for the server, configure your Passage credentials in the server's `.env` file. For the client, make sure to set up Passage in your React app to handle user authentication.
+
+## Future Enhancements
+- [ ] A community feed that displays the most recent requests and responses where users can comment on requests and responses to indicate support.
+- [ ] Users can search for specific topics or use tags to filter content based on their interests
+- [ ] Users receive real-time notifications when someone responds to their request for active discussions and interactions.
+- [ ] Users can report inappropriate content, and moderators can review and take action if necessary.
 
 ## Contributing
 
@@ -149,5 +143,3 @@ Lift As You Climb is an open-source project, and we welcome contributions from t
 7. We will review your contribution and merge it if it aligns with the project's goals.
 
 Happy coding and contributing!
-````
-git 
