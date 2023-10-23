@@ -1,70 +1,152 @@
-# Getting Started with Create React App
+# Lift As You Climb
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Empower your career journey with Lift As You Climb. A supportive community for women in tech and career enthusiasts to share encouragement, advice, and valuable resources.**
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Key Features (MVP)](#key-features-mvp)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Endpoints](#endpoints)
+- [Authentication](#authentication)
+- [Contributing](#contributing)
 
-### `npm start`
+## Key Features (MVP)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Purpose
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The purpose of the "Lift As You Climb" app is to create a supportive community where Women Who Code can empower one another by providing and receiving advice, encouragement, and valuable resources to boost their career growth. The app aims to foster a positive and encouraging environment for professional development.
 
-### `npm test`
+### Target Audiences
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Women Who Code: The primary target audience is women in the tech industry or those aspiring to join it.
+- Career Enthusiasts: Anyone interested in career growth, mentorship, or offering support.
+- The current WWCode technical tracks available are: Front End, Mobile, Python, Blockchain, Cloud, and Data Science.
 
-### `npm run build`
+### Core Functionality
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The primary functionality is to request encouragement and offer encouragement within a supportive community.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Registration and Profiles
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Users can create accounts with e-mail using Passage by 1Password for secure authentication.
 
-### `npm run eject`
+### Encouragement Requests
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Users can post requests for encouragement, advice, or resources related to their career goals.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Offering Encouragement
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Users can view the requests from others and provide responses with words of encouragement, advice, or share valuable resources.
+- Responses can be made anonymously or with user identification, based on the user's preference.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Community Feed
 
-## Learn More
+- A feed that displays the most recent requests and responses.
+- Users can comment on requests and responses to indicate support.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Installation
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Prerequisites
 
-### Code Splitting
+Make sure you have the following software installed on your system:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/) (v6 or higher) or [Yarn](https://yarnpkg.com/) (v1.22 or higher)
+- [SQLite](https://www.sqlite.org/) (for development purposes)
 
-### Analyzing the Bundle Size
+### Clone the Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/your-username/lift-as-you-climb.git
+cd lift-as-you-climb
+```
 
-### Making a Progressive Web App
+### Server Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. Navigate to the server directory:
 
-### Advanced Configuration
+```bash
+cd server
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. Install server dependencies:
 
-### Deployment
+```bash
+npm install
+# or
+yarn install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+3. Set up your environment variables by creating a `.env` file and populating it with your own values. Make sure to include the required Passage by 1Password credentials.
 
-### `npm run build` fails to minify
+4. Run the server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+node server.mjs
+```
+
+### Client Setup
+
+1. Navigate to the client directory:
+
+```bash
+cd src
+```
+
+2. Install client dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Start the client application:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+## Usage
+
+- Visit `http://localhost:3000` in your web browser to access the Lift As You Climb app.
+- Create an account, fill in your profile, and start engaging with the community.
+- Post encouragement requests, offer your support to others, and interact with the community feed.
+
+## Endpoints
+
+### API Endpoints (Server)
+
+- **GET `/api/requests`**: Get a list of encouragement requests.
+- **POST `/api/requests`**: Create a new encouragement request.
+- **GET `/api/responses`**: Get a list of responses to encouragement requests.
+- **POST `/api/responses`**: Create a new response to an encouragement request.
+
+### Client Routes
+
+- **`/`**: Home page displaying the community feed.
+- **`/profile`**: User profile page for editing your profile details.
+- **`/requests`**: Explore and post encouragement requests.
+- **`/responses`**: View and respond to encouragement requests.
+
+## Authentication
+
+Lift As You Climb utilizes **Passage by 1Password** for authentication. To set up Passage for the server, configure your Passage credentials in the server's `.env` file. For the client, make sure to set up Passage in your React app to handle user authentication.
+
+## Contributing
+
+Lift As You Climb is an open-source project, and we welcome contributions from the community. If you'd like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Clone your forked repository to your local machine.
+3. Create a new branch to work on a feature or bug fix.
+4. Implement your changes and commit them to your branch.
+5. Push your changes to your fork on GitHub.
+6. Create a pull request from your branch to the main repository's `main` branch.
+7. We will review your contribution and merge it if it aligns with the project's goals.
+
+Happy coding and contributing!
+````
