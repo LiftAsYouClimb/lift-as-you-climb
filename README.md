@@ -13,6 +13,8 @@
 
 ## Key Features (MVP)
 
+https://github.com/LiftAsYouClimb/lift-as-you-climb/assets/54958511/d0b86b1c-2bfd-4abe-bc77-bacd0761c581
+
 ### Purpose
 
 The purpose of the "Lift As You Climb" app is to create a supportive community where Women Who Code can empower one another by providing and receiving advice, encouragement, and valuable resources to boost their career growth. The app aims to foster a positive and encouraging environment for professional development.
@@ -25,11 +27,11 @@ The purpose of the "Lift As You Climb" app is to create a supportive community w
 
 ### Core Functionality
 
-The primary functionality is to request encouragement and offer encouragement within a supportive community.
+The primary functionality is to request encouragement and offer encouragement within a supportive community. The frontend uses [React](https://react.dev/) and [MUI components](https://react.dev/). The backend is [Node.js](https://nodejs.org/en) with [Express.js](https://expressjs.com/) server and [SQLite](https://www.sqlite.org/index.html) database.
 
 ### User Registration and Profiles
 
-- Users can create accounts with e-mail using Passage by 1Password for secure authentication.
+- Users can create accounts and login with e-mail using [Passage by 1Password](https://docs.passage.id/) for secure user authentication.
 
 ### Encouragement Requests
 
@@ -48,7 +50,6 @@ The primary functionality is to request encouragement and offer encouragement wi
 ## Installation
 
 ### Prerequisites
-
 Make sure you have the following software installed on your system:
 
 - [Node.js](https://nodejs.org/) (v14 or higher)
