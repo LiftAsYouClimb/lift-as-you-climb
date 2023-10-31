@@ -1,23 +1,48 @@
-The server directory contains Node.js server code with Express.js.
+# Lift As You Climb Server
 
-Express is a minimalist web application framework for Node.js that simplifies the process of building web applications and APIs by providing a set of powerful and flexible features.
+The server directory hosts the Node.js server code powered by Express.js, a minimalist web application framework for Node.js. This framework simplifies the process of building web applications and APIs by offering a range of powerful and flexible features.
 
-The `app` object represents our web server and provides a set of methods and properties to configure routes, handle HTTP requests, and define middleware
+## Description
 
-The proxy configuration tells the React development server to proxy requests with the `/api` prefix to our Node.js server running on port 4000.
+The heart of our application resides in the `app` object. This object represents our web server and provides a comprehensive suite of methods and properties. It facilitates the configuration of routes, handling of HTTP requests, and definition of middleware.
 
-To start both React and Node:
+### Proxy Configuration
 
-- In separate terminals, navigate to React app's root directory (`lift-as-you-climb`) and Node.js server directory (`lift-as-you-climb/server`)
-- In the React app directory, start the development server: `npm start`
-- In the Node.js server directory, start the server: `node server.mjs`
+Our React development server is configured to proxy requests prefixed with `/api` to our Node.js server, which runs on port 4000.
 
-The React development server typically runs on port 3000, and our Node.js server runs on port 4000, as configured in the code.
+## Getting Started
 
-If you try to start the server and get this error:
+To run both React and Node:
 
-`PassageError: A Passage appID is required. Please include {appID: YOUR_APP_ID}.`
+1. In separate terminal windows, navigate to the root directory of the React app (`lift-as-you-climb`) and the directory of the Node.js server (`lift-as-you-climb/server`).
+2. Start the development server for the React app:
 
-You most likely need to set the environment variable in the command line:
+   ```bash
+   npm start
+   ```
 
-`export PASSAGE_APP_ID=YOUR_APP_ID`
+3. Start the Node.js server:
+
+   ```bash
+   node server.mjs
+   ```
+
+The React development server typically runs on port 3000, while our Node.js server operates on port 4000, as configured in the code.
+
+## Troubleshooting
+
+### Passage App ID Requirement
+
+If you encounter the error message:
+
+```
+PassageError: A Passage appID is required. Please include {appID: YOUR_APP_ID}.
+```
+
+It's likely that you need to set the environment variable in the command line using:
+
+```bash
+export PASSAGE_APP_ID=YOUR_APP_ID
+```
+
+Replace `YOUR_APP_ID` with your specific Passage App ID.
