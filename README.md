@@ -80,7 +80,7 @@ yarn install
 
 4. Run the server: `node server.mjs`
 
-5. See [server documentation](/server/README.md) for more details.
+See [server documentation](/server/README.md) for more details.
 
 ### Client Setup
 
@@ -123,10 +123,6 @@ yarn start
 - **`/profile`**: User profile page for editing your profile details.
 - **`/climb`**: Explore and post encouragement requests.
 - **`/lift`**: View and respond to encouragement requests.
-
-## Authentication
-
-Lift As You Climb utilizes **Passage by 1Password** for authentication. To set up Passage for the server, configure your Passage credentials in the server's `.env` file. For the client, make sure to set up Passage in your React app to handle user authentication.
 
 ## Authentication
 
