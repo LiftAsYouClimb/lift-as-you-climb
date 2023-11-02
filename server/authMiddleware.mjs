@@ -10,6 +10,7 @@ const passageAuthMiddleware = async (req, res, next) => {
       next();
     } else {
       // failed to authenticate, return a 401 or other "unauthorized" behavior
+      console.error("Could not authenticate user!");
       res.status(401).send("Could not authenticate user!");
     }
   } catch (e) {
